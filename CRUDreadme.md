@@ -154,5 +154,23 @@ namespace WpfApp1.Infrastructure.Converters
     }
 }
 ```
+Подключаем пространство имено конверторов в разметке.
+```
+xmlns:c="clr-namespace:WpfApp1.Infrastructure.Converters"
+```
+В ресурсах создаем конвертеры.
+```
+<Window.Resources>
+    <c:OperationResultToStringConverter x:Key="OperationResultToStringConverter"/>
+    <c:OperationResultToSolidColorBrushConverter x:Key="OperationResultToSolidColorBrushConverter"/>
+</Window.Resources>
+```
+Используем конвертуры в привязке.
+```
+<TextBlock DockPanel.Dock="Top"
+           Text="{Binding OperationResult, Converter={StaticResource OperationResultToStringConverter}}"
+           Foreground="{Binding Path=OperationResult, Converter={StaticResource OperationResultToSolidColorBrushConverter}}"/>
+```
+<TextBlock DockPanel.Dock="Top" Text="{Binding OperationResult.OperationResultTitle}"/>
 
 Связь событий и команд реализуется при помощи Behaviors.\
