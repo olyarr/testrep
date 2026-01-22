@@ -86,7 +86,41 @@ AddProductCommand = new LambdaCommand(OnAddProductCommandExecuted, CanAddProduct
 ## Шаг 3. Недоступность кнопок копирования, редактирования, очищение полей редактирования в зависимости от кол-ва выделенных элементов в списке
 
 ## Шаг ?. Цвет результата операции
+Создаем enum.
+```
+namespace WpfApp1.Models.Enums
+{
+    internal enum OperationResultTitle
+    {
+        Default,
+        DataSuccessfullyUploaded, //Данные успешно выгружены
+        DataNotSuccessfullyUploaded, //Не удалось выгрузить данные
+        NewObjectSuccessfullyAdded, //Новый объект успешно добавлен
+        NewObjectNotSuccessfullyAdded, //Не удалось добавить новый объект
+        DataSuccessfullySaved, //Данные успешно сохранены
+        DataNotSuccessfullySaved, //Не удалось сохранить данные
+        ObjectSuccessfullyDeleted, //Объект успешно удален
+        ObjectNotSuccessfullyDeleted, //Не удалось удалить объект
+        ObjectsSuccessfullyDeleted, //Объекты успешно удалены
+        ObjectsNotSuccessfullyDeleted, //Не удалось удалить объекты
+    }
+}
 
+```
+Создаем класс OperationResult, который будет хранить результат операции и ее успешность.
+```
+using WpfApp1.Models.Enums;
+
+namespace WpfApp1.Models
+{
+    internal class OperationResult
+    {
+        public OperationResultTitle OperationResultTitle { get; set; }
+
+        public bool IsSuccessful { get; set; }
+    }
+}
+```
 Пишем два конвертера.\
 Один для конвентации enum'а в строку.
 ```
