@@ -127,31 +127,40 @@ namespace WpfApp1.Models
 using System;
 using System.Globalization;
 using WpfApp1.Infrastructure.Converters.Base;
-using WpfApp1.Models;
 using WpfApp1.Models.Enums;
 
 namespace WpfApp1.Infrastructure.Converters
 {
-    internal class OperationResultToStringConverter : Converter
+    internal class OperationResultTitleToStringConverter : Converter
     {
         public override object Convert(object v, Type t, object p, CultureInfo c)
         {
             if (v is null) return null;
 
-            switch (((OperationResult)v).OperationResultTitle)
+            switch ((OperationResultTitle)v)
             {
                 case OperationResultTitle.Default:
                     return string.Empty;
                 case OperationResultTitle.DataSuccessfullyUploaded:
                     return "Данные успешно выгружены";
+                case OperationResultTitle.DataNotSuccessfullyUploaded:
+                    return "Не удалось выгрузить данные";
                 case OperationResultTitle.NewObjectSuccessfullyAdded:
                     return "Новый объект успешно добавлен";
+                case OperationResultTitle.NewObjectNotSuccessfullyAdded:
+                    return "Не удалось добавить новый объект";
                 case OperationResultTitle.DataSuccessfullySaved:
                     return "Данные успешно сохранены";
+                case OperationResultTitle.DataNotSuccessfullySaved:
+                    return "Не удалось сохранить данные";
                 case OperationResultTitle.ObjectSuccessfullyDeleted:
                     return "Объект успешно удален";
+                case OperationResultTitle.ObjectNotSuccessfullyDeleted:
+                    return "Не удалось удалить объект";
                 case OperationResultTitle.ObjectsSuccessfullyDeleted:
                     return "Объекты успешно удалены";
+                case OperationResultTitle.ObjectsNotSuccessfullyDeleted:
+                    return "Не удалось удалить объекты";
                 default:
                     return string.Empty;
             }
@@ -165,17 +174,16 @@ using System;
 using System.Globalization;
 using System.Windows.Media;
 using WpfApp1.Infrastructure.Converters.Base;
-using WpfApp1.Models;
 
 namespace WpfApp1.Infrastructure.Converters
 {
-    internal class OperationResultToSolidColorBrushConverter : Converter
+    internal class OperationResultIsSuccessfulToSolidColorBrushConverter : Converter
     {
         public override object Convert(object v, Type t, object p, CultureInfo c)
         {
             if (v is null) return null;
 
-            switch (((OperationResult)v).IsSuccessful)
+            switch ((bool)v)
             {
                 case true:
                     return new SolidColorBrush(Colors.Green);
