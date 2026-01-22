@@ -210,8 +210,8 @@ xmlns:c="clr-namespace:WpfApp1.Infrastructure.Converters"
 Используем конвертуры в привязке.
 ```
 <TextBlock DockPanel.Dock="Top"
-           Text="{Binding OperationResult, Converter={StaticResource OperationResultToStringConverter}}"
-           Foreground="{Binding Path=OperationResult, Converter={StaticResource OperationResultToSolidColorBrushConverter}}"/>
+           Text="{Binding OperationResult.OperationResultTitle, Converter={StaticResource OperationResultToStringConverter}}"
+           Foreground="{Binding Path=OperationResult.IsSuccessful, Converter={StaticResource OperationResultToSolidColorBrushConverter}}"/>
 ```
 <TextBlock DockPanel.Dock="Top" Text="{Binding OperationResult.OperationResultTitle}"/>
 
