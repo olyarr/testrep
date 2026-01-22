@@ -83,4 +83,76 @@ AddProductCommand = new LambdaCommand(OnAddProductCommandExecuted, CanAddProduct
 ```
 Прописываем установку Idшника и рессет значений для объекта NewProduct.\
 
+## Шаг 3. Недоступность кнопок копирования, редактирования, очищение полей редактирования в зависимости от кол-ва выделенных элементов в списке
+
+## Шаг ?. Цвет результата операции
+
+Пишем два конвертера.\
+Один для конвентации enum'а в строку.
+```
+using System;
+using System.Globalization;
+using WpfApp1.Infrastructure.Converters.Base;
+using WpfApp1.Models;
+using WpfApp1.Models.Enums;
+
+namespace WpfApp1.Infrastructure.Converters
+{
+    internal class OperationResultToStringConverter : Converter
+    {
+        public override object Convert(object v, Type t, object p, CultureInfo c)
+        {
+            if (v is null) return null;
+
+            switch (((OperationResult)v).OperationResultTitle)
+            {
+                case OperationResultTitle.Default:
+                    return string.Empty;
+                case OperationResultTitle.DataSuccessfullyUploaded:
+                    return "Данные успешно выгружены";
+                case OperationResultTitle.NewObjectSuccessfullyAdded:
+                    return "Новый объект успешно добавлен";
+                case OperationResultTitle.DataSuccessfullySaved:
+                    return "Данные успешно сохранены";
+                case OperationResultTitle.ObjectSuccessfullyDeleted:
+                    return "Объект успешно удален";
+                case OperationResultTitle.ObjectsSuccessfullyDeleted:
+                    return "Объекты успешно удалены";
+                default:
+                    return string.Empty;
+            }
+        }
+    }
+}
+```
+Другой для перевода успешности результата в цвет.
+```
+using System;
+using System.Globalization;
+using System.Windows.Media;
+using WpfApp1.Infrastructure.Converters.Base;
+using WpfApp1.Models;
+
+namespace WpfApp1.Infrastructure.Converters
+{
+    internal class OperationResultToSolidColorBrushConverter : Converter
+    {
+        public override object Convert(object v, Type t, object p, CultureInfo c)
+        {
+            if (v is null) return null;
+
+            switch (((OperationResult)v).IsSuccessful)
+            {
+                case true:
+                    return new SolidColorBrush(Colors.Green);
+                case false:
+                    return new SolidColorBrush(Colors.Red);
+                default:
+                    return new SolidColorBrush(Colors.Transparent);
+            }
+        }
+    }
+}
+```
+
 Связь событий и команд реализуется при помощи Behaviors.\
