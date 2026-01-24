@@ -196,7 +196,7 @@ namespace WpfApp1.Infrastructure.Converters
     }
 }
 ```
-Подключаем пространство имено конверторов в разметке.
+Подключаем пространство имен конверторов в разметке.
 ```
 xmlns:c="clr-namespace:WpfApp1.Infrastructure.Converters"
 ```
@@ -207,7 +207,7 @@ xmlns:c="clr-namespace:WpfApp1.Infrastructure.Converters"
     <c:OperationResultToSolidColorBrushConverter x:Key="OperationResultToSolidColorBrushConverter"/>
 </Window.Resources>
 ```
-Используем конвертуры в привязке.
+Используем конверторы в привязке.
 ```
 <TextBlock DockPanel.Dock="Top"
            Text="{Binding OperationResult.OperationResultTitle, Converter={StaticResource OperationResultToStringConverter}}"
