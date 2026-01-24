@@ -14,6 +14,7 @@
 StartupUri="Views/MainWindow.xaml"
 ```
 Делаем разметку окна.\
+Настраиваем датагрид.\
 Делаем вью-модель для окна.\
 Присоединяем вью-модель ко вью.\
 ### Создание команд
@@ -227,4 +228,7 @@ xmlns:c="clr-namespace:WpfApp1.Infrastructure.Converters"
 ```
 <TextBlock DockPanel.Dock="Top" Text="{Binding OperationResult.OperationResultTitle}"/>
 
+## Шаг ?. Валидация полей
+
+## Описание
 Связь событий и команд реализуется при помощи Behaviors.\
