@@ -1,8 +1,7 @@
 # Практика CRUD приложение
 
 Вывод кол-ва записей в таблице.\
-Импорт и экспорт бд.\
-Тесты для приложения.\
+Импорт и экспорт бд.
 
 ## Обработка.
 Вывод если коллекция пустая.\
@@ -251,6 +250,8 @@ xmlns:c="clr-namespace:WpfApp1.Infrastructure.Converters"
 <TextBlock DockPanel.Dock="Top" Text="{Binding OperationResult.OperationResultTitle}"/>
 
 ## Шаг ?. Валидация полей
+
+## Шаг ?. Тесты для приложения
 
 ## Описание
 Связь событий и команд реализуется при помощи Behaviors.\
