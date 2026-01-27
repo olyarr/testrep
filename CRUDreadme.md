@@ -1,24 +1,43 @@
 # Практика CRUD приложение
 
-Валидация полей.\
-Настройка датагрида.\
 Вывод кол-ва записей в таблице.\
-Испорт и экспорт бд.\
+Импорт и экспорт бд.\
 Тесты для приложения.\
+
 ## Обработка.
 Вывод если коллекция пустая.\
 
 ## Шаг 1. Основа MVVM приложения
 Создаем архитектуру MVVM приложения.\
+Создаем папки Views, Models, ViewModels.\
+~ Рис 1\
+Окно MainWindow.xaml переносим в папку Views.\
+~ Рис 2\
+В файле App.xaml меняем значение в свойстве StarupUri.
 ```
 StartupUri="Views/MainWindow.xaml"
 ```
-Делаем разметку окна.\
-Настраиваем датагрид.\
 Делаем вью-модель для окна.\
 Присоединяем вью-модель ко вью.\
+Делаем разметку окна.\
+Создаем класс Product и список во вью-модели.\
+В папке Models создаем класс Product.
+```
+internal class Product : ViewModel
+{
+    public int _Id { get; set; }
+
+    public string _Article { get; set; }
+
+    public string _Title {  get; set; }
+
+    public double _Price {  get; set; }
+}
+```
+Настраиваем датагрид.\
 ### Создание команд
-Создаем папку Infrastructure. В ней папку Commands. В ней папку Base. В ней создаем класс Command.
+Создаем папку Infrastructure. В ней папку Commands. В ней папку Base. В ней создаем класс Command.\
+~ Описание класса Command.
 ```
 using System;
 using System.Windows.Input;
@@ -39,7 +58,8 @@ namespace WpfApp1.Infrastructure.Commands.Base
     }
 }
 ```
-На основании него создаем класс LambdaCommand.
+На основании него создаем класс LambdaCommand.\
+~ Описание класса LambdaCommand.
 ```
 using System;
 using WpfApp1.Infrastructure.Commands.Base;
